@@ -1,17 +1,12 @@
-const express = require("express");
-const superheroes = require('superheroes');
+const express = require('express')
+const app = express()
+const port = 3000
 
-var name = superheroes.random();
-console.log(name);
+app.get('/api/v1/:token', (req, res) => {
 
-const app = express();
+    res.status(200).json({ name: req.params.token })
+})
 
-app.get("/name", function (req, res) {
-    res.send("hello from express");
-});
-
-const PORT = process.env.PORT || 3000;
-
-app.listen(PORT, function () {
-    console.log("server is started");
-});
+app.listen(port, () => {
+    console.log(`Example app listening on port ${port}`)
+})
